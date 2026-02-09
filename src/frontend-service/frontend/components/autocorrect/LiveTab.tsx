@@ -82,7 +82,7 @@ export default function LiveTab() {
             if (Array.isArray(results)) {
               const newSuggestions = results.map((result: any) => ({
                 word: result.surface,
-                score: result.atlas_score, // Assuming this is the score you want to display
+                score: result.atlas_score, 
               }));
               setSuggestions(newSuggestions);
             }
@@ -94,14 +94,12 @@ export default function LiveTab() {
 
             if (results.length > 0) {
               console.log("\nTop 5 Results:");
-              // The console.table() function is great for displaying arrays of objects
               console.table(results.slice(0, 5));
             } else {
               console.log("No results (UNRESOLVED)");
             }
           }
         } catch (e) {
-          // It's better to log errors for debugging
           console.error("Failed to parse or handle WebSocket message:", e);
         }
       };
