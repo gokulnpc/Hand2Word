@@ -1,0 +1,10 @@
+[project]
+name = "kb-aliases"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.40.49",
+    "strands-agents>=1.11.0",
+    "pymongo>=4.6.0",
+]
