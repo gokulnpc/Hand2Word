@@ -1,0 +1,18 @@
+[project]
+name = "frontend-service"
+version = "0.1.0"
+description = "ASL Frontend Service - MediaPipe Holistic client for real-time landmark streaming via WebSocket"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Thong Nguyen", email = "thongnguyentam@gmail.com" }
+]
+dependencies = [
+    "mediapipe>=0.10.21",
+    "numpy>=1.26.4",
+    "opencv-python>=4.11.0.86",
+    "websockets>=15.0.1",
+]
+
+[tool.uv]
+dev-dependencies = []
