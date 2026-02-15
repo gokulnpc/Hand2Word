@@ -20,10 +20,10 @@ function useHandsLoader() {
     (async () => {
       try {
         await loadScript(
-          "https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+          "https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js",
         );
         await loadScript(
-          "https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
+          "https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js",
         );
         if (mounted) setReady(true);
       } catch (e) {
@@ -37,7 +37,8 @@ function useHandsLoader() {
   return ready;
 }
 
-const WEBSOCKET_URL = "wss://opcs2s86c2.execute-api.us-east-1.amazonaws.com/dev";
+const WEBSOCKET_URL =
+  "wss://opcs2s86c2.execute-api.us-east-1.amazonaws.com/dev";
 
 export default function LiveTab() {
   const handsReady = useHandsLoader();
@@ -52,7 +53,7 @@ export default function LiveTab() {
   const [cameraOn, setCameraOn] = useState(false);
   const [wsUrl, setWsUrl] = useState<string>(WEBSOCKET_URL);
   const [sessionId, setSessionId] = useState<string>(
-    () => `session_${Date.now()}`
+    () => `session_${Date.now()}`,
   );
   const wsStatus = useApp((s) => s.wsStatus);
   const setWsStatus = useApp((s) => s.setWsStatus);
@@ -82,7 +83,7 @@ export default function LiveTab() {
             if (Array.isArray(results)) {
               const newSuggestions = results.map((result: any) => ({
                 word: result.surface,
-                score: result.atlas_score, 
+                score: result.atlas_score,
               }));
               setSuggestions(newSuggestions);
             }
@@ -124,7 +125,7 @@ export default function LiveTab() {
     ];
     const pick = samples[Math.floor(Math.random() * samples.length)];
     setSuggestions(
-      pick.map((w, i) => ({ word: w, score: Math.max(0, 1 - i * 0.15) }))
+      pick.map((w, i) => ({ word: w, score: Math.max(0, 1 - i * 0.15) })),
     );
   }, [setSuggestions]);
 
@@ -194,7 +195,7 @@ export default function LiveTab() {
             action: "sendlandmarks",
             session_id: sessionId,
             data: vector,
-          })
+          }),
         );
         lastSent.current = now;
       }
@@ -332,14 +333,6 @@ export default function LiveTab() {
                 </button>
               ))}
             </div>
-            {/* <div className="mt-4">
-              <button
-                onClick={simulateSuggestions}
-                className="px-3 py-1 text-xs rounded-full bg-fuchsia-500/20 border border-fuchsia-400 text-fuchsia-200"
-              >
-                Simulate
-              </button>
-            </div> */}
           </div>
         </div>
 
@@ -380,10 +373,10 @@ export default function LiveTab() {
                   wsStatus === "connected"
                     ? "text-emerald-300"
                     : wsStatus === "connecting"
-                    ? "text-amber-300"
-                    : wsStatus === "error"
-                    ? "text-rose-300"
-                    : "text-white/60"
+                      ? "text-amber-300"
+                      : wsStatus === "error"
+                        ? "text-rose-300"
+                        : "text-white/60"
                 }
               >
                 {wsStatus}
